@@ -6,7 +6,7 @@
 /*   By: faru <faru@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/22 12:26:35 by faru          #+#    #+#                 */
-/*   Updated: 2023/03/19 03:36:55 by fra           ########   odam.nl         */
+/*   Updated: 2023/03/20 14:59:45 by faru          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,105 +27,95 @@
 #  define WIDTH 800
 #  define HEIGHT 450
 # endif
-# define RGBA_BK 0x00000000
-# define RGBA_FDF 0x00FF00FF
-# define BPP sizeof(int32_t)
+# define RGBA_BK 0
+# define RGBA_GRID 0x00FF00FF
+# define BPP 4
 
 typedef struct point2d
 {
 	float	x;
 	float	y;
-}   point2d_t;
+}	t_point2d;
 
 typedef struct point3d
 {
-	float x;
-	float y;
-	float z;
-}   point3d_t;
+	float	x;
+	float	y;
+	float	z;
+}	t_point3d;
 
-typedef struct  map
+typedef struct map
 {
-	point2d_t		*map_2d;
-	point3d_t		*map_3d;
+	t_point2d		*map_2d;
+	t_point3d		*map_3d;
 	uint32_t		cols;
 	uint32_t		rows;
 	uint32_t		hor_pix;
 	uint32_t		ver_pix;
 	mlx_t			*win;
 	mlx_image_t		*img;
-}	map_t;
+}	t_map;
 
-
-void    	start_app(map_t	*map);
+void		start_app(t_map	*map, float image_perc, float grid_perc);
 
 void		close_app(void *param);
 
-void		set_image_in_win(map_t *map, int32_t width, int32_t height, int32_t bk_color);
+void		set_image_in_win(t_map *map, int32_t w, int32_t h, float perc);
 
+void		draw_grid(t_map *map);
 
-void 		draw_grid(map_t *map, int32_t color);
+void		draw_line(t_map *map, t_point2d str, t_point2d end);
 
-void 		draw_line(map_t *map, point2d_t start, point2d_t end, int32_t color);
+void		draw_pixel(t_map *map, t_point2d point);
 
-void		draw_pixel(map_t *map, point2d_t point, int32_t color);
+t_point2d	find_focus(t_map *map);
 
+t_point2d	find_min_map(t_map *map);
 
-point2d_t	find_focus(map_t *map);
+float		find_edge(t_map *map);
 
-point2d_t	find_min_map(map_t *map);
-
-float		find_edge(map_t *map);
-
-float 		find_alpha(map_t *map, int32_t radius, point2d_t cursor_pos);
-
+float		find_alpha(t_map *map, int32_t radius, t_point2d cursor_pos);
 
 void		esc_hook(void *param);
 
-void		resize_hook(int32_t width, int32_t height, void* param);
+void		resize_hook(int32_t width, int32_t height, void *param);
 
-void		rotate_hook(mouse_key_t btn, action_t act, modifier_key_t key, void *param);
+void		rotate_hook(mouse_key_t b, action_t a, modifier_key_t k, void *p);
 
-void		translate_hook(mlx_key_data_t keydata, void* param);
+void		translate_hook(mlx_key_data_t keydata, void *param);
 
+void		rotate_map(t_map *map, char type, float rad);
 
-void		rotate_map(map_t *map, char type, float rad);
+void		shift_map(t_map *map, float plus_x, float plus_y);
 
-void		shift_map(map_t *map, float plus_x, float plus_y);
+void		resize_map(t_map *map, float amount);
 
-void		resize_map(map_t *map, float perc);
+t_map		*create_map(uint32_t cols, uint32_t rows);
 
+void		free_map(t_map **map);
 
-map_t*		create_map(uint32_t cols, uint32_t rows);
+void		fill_map(int32_t fd, t_map *map);
 
-void		free_map(map_t **map);
+void		render_map(t_map *map, float perc);
 
-void		fill_map(int32_t fd, map_t *map);
+void		project_map(t_map *map);
 
-void		render_map(map_t *map, float perc, int32_t color);
+t_point3d	iso_project(t_point3d p);
 
-void		project_map(map_t *map);
+t_point3d	rotate_x(t_point3d p, float rad);
 
+t_point3d	rotate_y(t_point3d p, float rad);
 
-point3d_t   iso_project(point3d_t p);
-
-point3d_t   rotate_x(point3d_t p, float rad);
-
-point3d_t   rotate_y(point3d_t p, float rad);
-
-point3d_t   rotate_z(point3d_t p, float rad);
-
+t_point3d	rotate_z(t_point3d p, float rad);
 
 bool		check_input(int argc, char **argv, uint32_t *cols, uint32_t *rows);
 
 void		parse_file(int32_t fd, uint32_t *cols, uint32_t *rows);
 
-float		parse_number(char *number);
+float		parse_n(char *number);
 
-point2d_t	round_coor(point2d_t point);
+t_point2d	round_coor(t_point2d point);
 
-float		distance(point2d_t p1, point2d_t p2);
-
-bool		wasd_released(mlx_key_data_t keydata);
+float		distance(t_point2d p1, t_point2d p2);
 
 #endif

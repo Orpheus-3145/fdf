@@ -6,7 +6,7 @@
 /*   By: faru <faru@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 18:38:04 by faru          #+#    #+#                 */
-/*   Updated: 2023/03/19 03:56:50 by fra           ########   odam.nl         */
+/*   Updated: 2023/03/20 15:01:18 by faru          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	parse_file(int32_t fd, uint32_t *cols, uint32_t *rows)
 	}
 }
 
-float	parse_number(char *str_nbr)
+float	parse_n(char *str_nbr)
 {
 	char	*hexa_starting;
 	float	dec_number;
@@ -78,14 +78,14 @@ float	parse_number(char *str_nbr)
 	}
 }
 
-point2d_t	round_coor(point2d_t point)
+t_point2d	round_coor(t_point2d point)
 {
-	return ((point2d_t){ft_round_to_int(point.x), ft_round_to_int(point.y)});
+	return ((t_point2d){ft_round_to_int(point.x), ft_round_to_int(point.y)});
 }
 
-float	distance(point2d_t p1, point2d_t p2)
+float	distance(t_point2d p1, t_point2d p2)
 {
-	point2d_t	result;
+	t_point2d	result;
 
 	result.x = p2.x - p1.x;
 	result.y = p2.y - p1.y;

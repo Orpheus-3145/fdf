@@ -6,7 +6,7 @@
 /*   By: fra <fra@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/15 00:23:50 by fra           #+#    #+#                 */
-/*   Updated: 2023/03/19 03:55:39 by fra           ########   odam.nl         */
+/*   Updated: 2023/03/20 15:14:23 by faru          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int32_t	main(int argc, char **argv)
 {
-	map_t		*map;
+	t_map		*map;
 	int32_t		fd;
 	uint32_t	width;
 	uint32_t	height;
@@ -27,7 +27,7 @@ int32_t	main(int argc, char **argv)
 	close(fd);
 	if (! map)
 		ft_raise_error("(fdf) Memory error", 1);
-	start_app(map);
+	start_app(map, 0.8, 0.8);
 	if (! map)
 		ft_raise_error("(fdf) Error in MLX42", 1);
 	else
@@ -35,5 +35,5 @@ int32_t	main(int argc, char **argv)
 		mlx_loop(map->win);
 		free_map(&map);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
