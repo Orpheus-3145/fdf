@@ -27,7 +27,7 @@ CC  := gcc
 IFLAGS := -Iinclude -I$(MLX42_DIR)/include -I$(LIBFT_DIR)/include
 CFLAGS := -Wall -Wextra -Werror -g3 -fsanitize=address
 
-LFLAGS := -L$(MLX42_DIR)/build -lmlx42 -Llibft -lft
+LFLAGS := -L$(MLX42_DIR)/build -lmlx42 -L$(LIBFT_DIR) -lft
 ifeq ($(shell uname -s),Darwin)			# Mac
 	LFLAGS := $(LFLAGS) -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 else ifeq ($(shell uname -s),Linux)		# Linux
