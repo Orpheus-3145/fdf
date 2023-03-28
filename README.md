@@ -16,6 +16,7 @@ The program works as follows:
     - rotate byt 60° along the x axis (goes increasingly from left to rigth)
     Matrix rotations::
 alpha roation on x-axis:            alpha roation on y-axis:             alpha roation on z-axis:
+
 |--------|--------|---------|       |---------|--------|--------|        |--------|---------|--------|
 | 1      | 0      | 0       |       | cos(a)  | 0      | sin(a) |        | cos(a) | -sin(a) | 0      |
 | 0      | cos(a) | -sin(a) |       | 0       | 1      | 0      |        | sin(a) | cos(a)  | 0      |
