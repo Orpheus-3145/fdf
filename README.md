@@ -29,37 +29,36 @@ My project Libft is also included in Fdf as a submodule (as for MLX42) do `git s
 
 
 # Execute
-
- - the command make creates the executable
+ - the command `make` creates the executable
  - the executables runs with a parameter, which is the path of the .fdf file (there are some of them inside the maps/ folder)
  - INSTURCTIONS:
-    key ESC -> kills the app
-    key WASD -> moves the subject in the window
-    mouse drag-and-drop -> rotates the subject on X or Y axis
-    (resizable window)
+    - key ESC -> kills the app
+    - key WASD -> moves the subject in the window
+    - mouse drag-and-drop -> rotates the subject on X or Y axis
+    - (resizable window)
 
  - other make commands: `re`, `clean`, `fclean`
 
 
 # Structure
-    include/  	--> header files
-    libft/    	--> libft directory with auxiliary functions (git submodule)
-    maps/       --> files to render
-    MLX42/      --> graphic library (git submodule)
-    objects/  	--> deposit for object files
-    tmp/        --> working examples provided
-    sources/  	--> source files:
-    	- app.c      		--> higher level functions to manage the MLX42 library and the map parsed (open, close, draw, ...)
-    	- draw.c     		--> draws the single pixel, a line from p1 to p2, and the whole graph
+    include/	--> header files
+    libft/		--> libft directory with auxiliary functions (git submodule)
+    maps/		--> files to render
+    MLX42/		--> graphic library (git submodule)
+    objects/	--> deposit for object files
+    tmp/		--> working examples provided
+    sources/	--> source files:
+    	- app.c				--> higher level functions to manage the MLX42 library and the map parsed (open, close, draw, ...)
+    	- draw.c			--> draws the single pixel, a line from p1 to p2, and the whole graph
     	- fdf.c				--> main file 
-    	- finder.c     		--> functions to find certain target inside the map
-    	- hooks.c     		--> callbacks binded to the presson of certain keys
+    	- finder.c			--> functions to find certain target inside the map
+    	- hooks.c			--> callbacks binded to the presson of certain keys
     	- manipulate_map.c	--> middle-level operations on map (rotate, shift, resize)
-    	- map.c		  		--> functions to manage maps objects (create, deallocate, render, ...)
-    	- rotations.c 		--> low-level rotations (matrix rotations)
-    	- tools.c      		--> checks and helper functions
+    	- map.c				--> functions to manage maps objects (create, deallocate, render, ...)
+    	- rotations.c		--> low-level rotations (matrix rotations)
+    	- tools.c			--> checks and helper functions
 	
 # References
-About [MLX42](https://medium.com/@ayogun/push-swap-c1f5d2d41e97) library
-42 project: [FdF](https://cdn.intra.42.fr/pdf/pdf/73983/en.subject.pdf)
-By: Francesco Aru, francesco.aru25@gmail.com, intra42/slack nickname: @faru, Codam, Amsterdam
+- About [MLX42 library](https://medium.com/@ayogun/push-swap-c1f5d2d41e97) library
+- 42 project: [FdF](https://cdn.intra.42.fr/pdf/pdf/73983/en.subject.pdf)
+- By: Francesco Aru, francesco.aru25@gmail.com, intra42/slack nickname: @faru, Codam, Amsterdam
