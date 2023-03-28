@@ -6,7 +6,7 @@
 /*   By: faru <faru@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/14 14:40:46 by faru          #+#    #+#                 */
-/*   Updated: 2023/03/19 19:03:42 by fra           ########   odam.nl         */
+/*   Updated: 2023/03/28 20:08:54 by fra           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,38 +22,32 @@ t_point3d	iso_project(t_point3d p)
 	return (tmp2);
 }
 
-t_point3d	rotate_x(t_point3d p, float rad)
+t_point3d	rotate_x(t_point3d old_point, float rad)
 {
-	float	x;
-	float	z;
-	float	y;
+	t_point3d rotated;
 
-	x = p.x;
-	y = p.y * cos(rad) - p.z * sin(rad);
-	z = p.y * sin(rad) + p.z * cos(rad);
-	return ((t_point3d){x, y, z});
+	rotated.x = old_point.x;
+	rotated.y = old_point.y * cos(rad) - old_point.z * sin(rad);
+	rotated.z = old_point.y * sin(rad) + old_point.z * cos(rad);
+	return (rotated);
 }
 
-t_point3d	rotate_y(t_point3d p, float rad)
+t_point3d	rotate_y(t_point3d old_point, float rad)
 {
-	float	x;
-	float	y;
-	float	z;
+	t_point3d rotated;
 
-	x = p.x * cos(rad) + p.z * sin(rad);
-	y = p.y;
-	z = -1 * p.x * sin(rad) + p.z * cos(rad);
-	return ((t_point3d){x, y, z});
+	rotated.x = old_point.x * cos(rad) + old_point.z * sin(rad);
+	rotated.y = old_point.y;
+	rotated.z = -1 * old_point.x * sin(rad) + old_point.z * cos(rad);
+	return (rotated);
 }
 
-t_point3d	rotate_z(t_point3d p, float rad)
+t_point3d	rotate_z(t_point3d old_point, float rad)
 {
-	float	x;
-	float	y;
-	float	z;
+	t_point3d rotated;
 
-	x = p.x * cos(rad) - p.y * sin(rad);
-	y = p.x * sin(rad) + p.y * cos(rad);
-	z = p.z;
-	return ((t_point3d){x, y, z});
+	rotated.x = old_point.x * cos(rad) - old_point.y * sin(rad);
+	rotated.y = old_point.x * sin(rad) + old_point.y * cos(rad);
+	rotated.z = old_point.z;
+	return (rotated);
 }
