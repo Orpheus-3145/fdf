@@ -14,13 +14,23 @@ The program works as follows:
 - every 3D point parsed must be rotated, because right now the map is in front of us, perpendicular to our sight: we would see just a flat rectangule/square with no elevation, the rotation we are going to apply are:
     - rotate by -45° along the z-axis (the one that goes perpenicularly from the monitor towards us)
     - rotate byt 60° along the x axis (goes increasingly from left to rigth)
-    Matrix rotations::
-alpha roation on x-axis:            alpha roation on y-axis:             alpha roation on z-axis:
+alpha roation on x-axis:
+|--------|--------|---------|
+| 1      | 0      | 0       |
+| 0      | cos(a) | -sin(a) |
+| 0      | sin(a) | cos(a)  |
 
-|--------|--------|---------|       |---------|--------|--------|        |--------|---------|--------|
-| 1      | 0      | 0       |       | cos(a)  | 0      | sin(a) |        | cos(a) | -sin(a) | 0      |
-| 0      | cos(a) | -sin(a) |       | 0       | 1      | 0      |        | sin(a) | cos(a)  | 0      |
-| 0      | sin(a) | cos(a)  |       | -sin(a) | 0      | cos(a) |        | 0      | 0       | 1      |
+alpha roation on y-axis:     
+|---------|--------|--------|
+| cos(a)  | 0      | sin(a) |
+| 0       | 1      | 0      |
+| -sin(a) | 0      | cos(a) |
+
+alpha roation on z-axis:
+|--------|---------|--------|
+| cos(a) | -sin(a) | 0      |
+| sin(a) | cos(a)  | 0      |
+| 0      | 0       | 1      |
 - now that every point is correctly rotated the rendering starts: for every point only the (x,y) tuple is going to be considered, also the whole se will be shifted, so it is going to be printed in the middle of the white image (80% of the size) which is centered in the windows (again, 80% of the size).   
         
 
