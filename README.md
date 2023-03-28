@@ -14,6 +14,7 @@ The program works as follows:
 - every 3D point parsed must be rotated, because right now the map is in front of us, perpendicular to our sight: we would see just a flat rectangule/square with no elevation, the rotation we are going to apply are:
     - rotate by -45° along the z-axis (the one that goes perpenicularly from the monitor towards us)
     - rotate byt 60° along the x axis (goes increasingly from left to rigth)
+	
 alpha roation on x-axis:
 |--------|--------|---------|
 | 1      | 0      | 0       |
