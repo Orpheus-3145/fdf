@@ -15,14 +15,19 @@ The program works as follows:
     - rotate by -45° along the z-axis (the one that goes perpenicularly from the monitor towards us)
     - rotate byt 60° along the x axis (goes increasingly from left to rigth)
 
-alpha roation on x-axis:			alpha roation on y-axis:
-| X      | Y      | Z       |		| X       | Y      | Z      |
-|--------|--------|---------|		|---------|--------|--------|
-| 1      | 0      | 0       |		| cos(a)  | 0      | sin(a) |
-| 0      | cos(a) | -sin(a) |		| 0       | 1      | 0      |
-| 0      | sin(a) | cos(a)  |		| -sin(a) | 0      | cos(a) |
+alpha roation on x-axis:
+| X      | Y      | Z       |
+|--------|--------|---------|
+| 1      | 0      | 0       |
+| 0      | cos(a) | -sin(a) |
+| 0      | sin(a) | cos(a)  |
 
-
+alpha roation on y-axis:
+| X       | Y      | Z      |
+|---------|--------|--------|
+| cos(a)  | 0      | sin(a) |
+| 0       | 1      | 0      |
+| -sin(a) | 0      | cos(a) |
 
 alpha roation on z-axis:
 | X      | Y       | Z      |
