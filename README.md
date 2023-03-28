@@ -8,7 +8,7 @@ The program works as follows:
 - first thing the map is going to be parsed and checked if it satisfies the requirements:
 	- .fdf extension and inside map folder
 	- the map hase the same numbers of columns and rows
-	- restrictions of values: 
+	- restrictions of values:
 		- symbols allowed, except for digits: '+' '-' ',' '.' (and hexadecimal symbols, see later)
 		- decimal or hexadecimal format, in the latter the number must begin with '0x' or have '0x' after the comma/point (in that case the whole part is going to be considered as decimal, the decimal part as hexadecimal)
 - every 3D point parsed must be rotated, because right now the map is in front of us, perpendicular to our sight: we would see just a flat rectangule/square with no elevation, the rotation we are going to apply are:
@@ -36,12 +36,12 @@ alpha roation on z-axis:
 | sin(a) | cos(a)  | 0      |
 | 0      | 0       | 1      |
 
-- now that every point is correctly rotated the rendering starts: for every point only the (x,y) tuple is going to be considered, also the whole se will be shifted, so it is going to be printed in the middle of the white image (80% of the size) which is centered in the windows (again, 80% of the size).   
-        
+- now that every point is correctly rotated the rendering starts: for every point only the (x,y) tuple is going to be considered, also the whole set will be shifted, so it is printed in the middle of the image (80% of the size), the image is also centered in the background and it has the same reduction rate (80%) of the graph on the img.
+
 
 # Requirements
 The graphic part relies of the MLX42 library (Codam) which in turn depends on GLFW (see #Recerences for info).
-My project Libft is also included in Fdf as a submodule (as for MLX42) do `git submodule update --init [--remote]` if necessary, feel free to text me (again, see #References) if some piece of Libft is in conflit with FdF. 
+My project Libft is also included in Fdf as a submodule (as for MLX42) do `git submodule update --init [--remote]` if necessary, feel free to text me (again, see #References) if some piece of Libft is in conflit with FdF.
 
 
 # Execute
@@ -75,8 +75,9 @@ My project Libft is also included in Fdf as a submodule (as for MLX42) do `git s
 								deallocate, render, ...)
     	- rotations.c		--> low-level rotations (matrix rotations)
     	- tools.c			--> checks and helper functions
-	
+
+
 # References
-- About [MLX42 library](https://medium.com/@ayogun/push-swap-c1f5d2d41e97)
-- 42 project: [FdF](https://cdn.intra.42.fr/pdf/pdf/73983/en.subject.pdf)
+- About [MLX42 library](https://github.com/codam-coding-college/MLX42)
+- 42 project: [FdF](https://cdn.intra.42.fr/pdf/pdf/68771/en.subject.pdf)
 - By: Francesco Aru, francesco.aru25@gmail.com, intra42/slack nickname: @faru, Codam, Amsterdam

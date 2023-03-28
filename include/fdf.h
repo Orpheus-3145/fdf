@@ -6,37 +6,40 @@
 /*   By: faru <faru@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/22 12:26:35 by faru          #+#    #+#                 */
-/*   Updated: 2023/03/20 14:59:45 by faru          ########   odam.nl         */
+/*   Updated: 2023/03/28 22:09:55 by fra           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# include <stddef.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stddef.h>
-# include <limits.h>
-# include <math.h>
-# include "MLX42/MLX42.h"
-# include "libft.h"
-# ifdef __APPLE__
-#  define WIDTH 2400
-#  define HEIGHT 1350
-# elif defined(__linux__)
-#  define WIDTH 800
-#  define HEIGHT 450
+# include <stdlib.h>			// malloc(), free()
+# include <math.h>				// sin(), cos(), M_PI, ...
+# include "MLX42/MLX42.h"		// graphic library
+# include "libft.h"				// libft library
+# ifdef __APPLE__				
+#  define WIDTH 2400			// horizonal pixels on Mac
+#  define HEIGHT 1350			// vertical pixels on Mac
+# elif defined(__linux__)	
+#  define WIDTH 800				// horizonal pixels on Linux
+#  define HEIGHT 450			// vertical pixels on Linux
 # endif
-# define RGBA_BK 0
-# define RGBA_GRID 0x00FF00FF
-# define BPP 4
+# define RGBA_BK 0xFFFFFFFF		// color of background of window (white)
+# define RGBA_GRID 0x00FF00FF	// color of grid (green)
+# define BPP 4					// bytes of every pixel (int type)
 
+// entity that represents a point in a 2D-coordinates system
+// @param x -> x coordinate
+// @param y -> y coordinate
 typedef struct point2d
 {
 	float	x;
 	float	y;
 }	t_point2d;
 
+// entity that represents a point in a 3D-coordinates system
+// @param x -> x coordinate
+// @param y -> y coordinate
+// @param z -> z coordinate
 typedef struct point3d
 {
 	float	x;
@@ -44,6 +47,15 @@ typedef struct point3d
 	float	z;
 }	t_point3d;
 
+// map structure that is displayed on the screen
+// @param map2d		-> array of 2D-elements (2d-map)
+// @param map3d		-> array of 3D-elements (3d-map)
+// @param cols		-> number of columns parsed from .fdf file
+// @param rows		-> number of rows parsed from .fdf file
+// @param hor_pix	-> number of horizontal pixels
+// @param ver_pix	-> number of veritical pixels
+// #param win		-> (mlx object) window object
+// @param img		-> (mlx object) imagine on which the 2d-map will be represented
 typedef struct map
 {
 	t_point2d		*map_2d;
