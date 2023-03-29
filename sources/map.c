@@ -6,7 +6,7 @@
 /*   By: faru <faru@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/22 16:08:16 by faru          #+#    #+#                 */
-/*   Updated: 2023/03/29 03:14:10 by fra           ########   odam.nl         */
+/*   Updated: 2023/03/30 01:28:29 by fra           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void	fill_map(int32_t fd, map_t *map)
 		cols = ft_split(row, ' ');
 		if (! cols)
 			free_map(&map);
-		while (map && cols && cols[j++])
-			(map->map_3d)[tot++] = (point3d_t){j - 1, i, parse_n(cols[j - 1])};
+		while (map && cols && cols[j])
+			(map->map_3d)[tot++] = (point3d_t){j, i, parse_number(cols[j++])};
 		ft_free_double((void ***) &cols, -1);
 		ft_free_single((void **) &row);
 		row = get_next_line(fd);

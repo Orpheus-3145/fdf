@@ -6,7 +6,7 @@
 /*   By: faru <faru@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 18:38:04 by faru          #+#    #+#                 */
-/*   Updated: 2023/03/29 03:13:40 by fra           ########   odam.nl         */
+/*   Updated: 2023/03/30 01:16:49 by fra           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	parse_file(int32_t fd, uint32_t *cols, uint32_t *rows)
 	}
 }
 
-float	parse_n(char *str_nbr)
+float	parse_number(char *str_nbr)
 {
 	char	*hexa_starting;
 	float	dec_number;

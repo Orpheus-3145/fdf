@@ -6,25 +6,25 @@
 /*   By: faru <faru@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/14 14:40:46 by faru          #+#    #+#                 */
-/*   Updated: 2023/03/28 22:12:45 by fra           ########   odam.nl         */
+/*   Updated: 2023/03/30 01:29:01 by fra           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_point3d	iso_project(t_point3d p)
+point3d_t	iso_project(point3d_t p)
 {
-	t_point3d	tmp1;
-	t_point3d	tmp2;
+	point3d_t	tmp1;
+	point3d_t	tmp2;
 
 	tmp1 = rotate_z(p, M_PI_4 * -1);
 	tmp2 = rotate_x(tmp1, (float) M_PI / 3);
 	return (tmp2);
 }
 
-t_point3d	rotate_x(t_point3d old_point, float rad)
+point3d_t	rotate_x(point3d_t old_point, float rad)
 {
-	t_point3d	rotated;
+	point3d_t	rotated;
 
 	rotated.x = old_point.x;
 	rotated.y = old_point.y * cos(rad) - old_point.z * sin(rad);
@@ -32,9 +32,9 @@ t_point3d	rotate_x(t_point3d old_point, float rad)
 	return (rotated);
 }
 
-t_point3d	rotate_y(t_point3d old_point, float rad)
+point3d_t	rotate_y(point3d_t old_point, float rad)
 {
-	t_point3d	rotated;
+	point3d_t	rotated;
 
 	rotated.x = old_point.x * cos(rad) + old_point.z * sin(rad);
 	rotated.y = old_point.y;
@@ -42,9 +42,9 @@ t_point3d	rotate_y(t_point3d old_point, float rad)
 	return (rotated);
 }
 
-t_point3d	rotate_z(t_point3d old_point, float rad)
+point3d_t	rotate_z(point3d_t old_point, float rad)
 {
-	t_point3d	rotated;
+	point3d_t	rotated;
 
 	rotated.x = old_point.x * cos(rad) - old_point.y * sin(rad);
 	rotated.y = old_point.x * sin(rad) + old_point.y * cos(rad);
