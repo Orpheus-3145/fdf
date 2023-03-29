@@ -6,7 +6,7 @@
 /*   By: faru <faru@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/03 18:38:04 by faru          #+#    #+#                 */
-/*   Updated: 2023/03/20 15:01:18 by faru          ########   odam.nl         */
+/*   Updated: 2023/03/29 03:13:40 by fra           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,14 @@ float	parse_n(char *str_nbr)
 	}
 }
 
-t_point2d	round_coor(t_point2d point)
+point2d_t	round_coor(point2d_t point)
 {
-	return ((t_point2d){ft_round_to_int(point.x), ft_round_to_int(point.y)});
+	return ((point2d_t){ft_round_to_int(point.x), ft_round_to_int(point.y)});
 }
 
-float	distance(t_point2d p1, t_point2d p2)
+float	distance(point2d_t p1, point2d_t p2)
 {
-	t_point2d	result;
+	point2d_t	result;
 
 	result.x = p2.x - p1.x;
 	result.y = p2.y - p1.y;

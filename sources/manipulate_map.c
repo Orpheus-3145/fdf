@@ -6,13 +6,13 @@
 /*   By: fra <fra@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/10 20:46:17 by fra           #+#    #+#                 */
-/*   Updated: 2023/03/20 14:51:34 by faru          ########   odam.nl         */
+/*   Updated: 2023/03/29 03:14:10 by fra           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	rotate_map(t_map *map, char type, float alpha)
+void	rotate_map(map_t *map, char type, float alpha)
 {
 	uint32_t	i;
 
@@ -29,7 +29,7 @@ void	rotate_map(t_map *map, char type, float alpha)
 	}
 }
 
-void	shift_map(t_map *map, float plus_x, float plus_y)
+void	shift_map(map_t *map, float plus_x, float plus_y)
 {
 	uint32_t	i;
 
@@ -42,7 +42,7 @@ void	shift_map(t_map *map, float plus_x, float plus_y)
 	}
 }
 
-void	resize_map(t_map *map, float amount)
+void	resize_map(map_t *map, float amount)
 {
 	uint32_t	i;
 

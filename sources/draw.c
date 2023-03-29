@@ -6,16 +6,16 @@
 /*   By: fra <fra@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/27 04:15:02 by fra           #+#    #+#                 */
-/*   Updated: 2023/03/20 15:04:22 by faru          ########   odam.nl         */
+/*   Updated: 2023/03/29 03:14:10 by fra           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	draw_grid(t_map *map)
+void	draw_grid(map_t *map)
 {
-	t_point2d	start;
-	t_point2d	end;
+	point2d_t	start;
+	point2d_t	end;
 	uint32_t	col;
 	uint32_t	row;
 
@@ -40,15 +40,15 @@ void	draw_grid(t_map *map)
 	}
 }
 
-void	draw_line(t_map *map, t_point2d start, t_point2d end)
+void	draw_line(map_t *map, point2d_t start, point2d_t end)
 {
-	t_point2d	diff;
-	t_point2d	sum;
+	point2d_t	diff;
+	point2d_t	sum;
 	float		error;
 	float		e2;
 
-	diff = (t_point2d){ft_mod(end.x - start.x), ft_mod(end.y - start.y) * -1};
-	sum = (t_point2d){1 - 2 * (start.x >= end.x), 1 - 2 * (start.y >= end.y)};
+	diff = (point2d_t){ft_mod(end.x - start.x), ft_mod(end.y - start.y) * -1};
+	sum = (point2d_t){1 - 2 * (start.x >= end.x), 1 - 2 * (start.y >= end.y)};
 	error = diff.x + diff.y;
 	while ((start.x != end.x) || (start.y != end.y))
 	{
@@ -66,7 +66,7 @@ void	draw_line(t_map *map, t_point2d start, t_point2d end)
 	}
 }
 
-void	draw_pixel(t_map *map, t_point2d point)
+void	draw_pixel(map_t *map, point2d_t point)
 {
 	while (point.x < 0)
 		point.x += map->hor_pix;

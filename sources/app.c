@@ -6,13 +6,13 @@
 /*   By: fra <fra@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/09 18:10:34 by fra           #+#    #+#                 */
-/*   Updated: 2023/03/20 14:52:13 by faru          ########   odam.nl         */
+/*   Updated: 2023/03/29 03:14:10 by fra           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	start_app(t_map	*map, float image_perc, float grid_perc)
+void	start_app(map_t	*map, float image_perc)
 {
 	if (! map)
 		return ;
@@ -21,41 +21,40 @@ void	start_app(t_map	*map, float image_perc, float grid_perc)
 		free_map(&map);
 	else
 	{
+		map->img_perc = image_perc;
 		mlx_loop_hook(map->win, &esc_hook, map);
 		mlx_close_hook(map->win, &close_app, map);
 		mlx_resize_hook(map->win, &resize_hook, map);
 		mlx_mouse_hook(map->win, &rotate_hook, map);
 		mlx_key_hook(map->win, &translate_hook, map);
-		set_image_in_win(map, WIDTH, HEIGHT, image_perc);
+		set_image_in_win(map, WIDTH, HEIGHT, RGBA_BK);
 		if (! map->img)
 			free_map(&map);
 		else
 		{
 			project_map(map);
-			render_map(map, grid_perc);
+			render_map(map);
 		}
 	}
 }
 
 void	close_app(void *param)
 {
-	t_map	*map;
+	map_t	*map;
 
 	if (param)
 	{
-		map = (t_map *) param;
+		map = (map_t *) param;
 		free_map(&map);
 	}
 	exit(EXIT_SUCCESS);
 }
 
-void	set_image_in_win(t_map *map, int32_t w, int32_t h, float perc)
+void	set_image_in_win(map_t *map, int32_t w, int32_t h, int32_t bk_color)
 {
 	uint32_t	start_x;
 	uint32_t	start_y;
 
-	map->hor_pix = w * perc;
-	map->ver_pix = h * perc;
 	start_x = (w - map->hor_pix) / 2;
 	start_y = (h - map->ver_pix) / 2;
 	if (! map->img)
@@ -71,5 +70,5 @@ void	set_image_in_win(t_map *map, int32_t w, int32_t h, float perc)
 		map->img->instances[0].y = start_y;
 		mlx_resize_image(map->img, map->hor_pix, map->ver_pix);
 	}
-	ft_memset(map->img->pixels, RGBA_BK, map->hor_pix * map->ver_pix * BPP);
+	ft_memset(map->img->pixels, bk_color, map->hor_pix * map->ver_pix * BPP);
 }

@@ -6,7 +6,7 @@
 /*   By: fra <fra@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/15 00:23:50 by fra           #+#    #+#                 */
-/*   Updated: 2023/03/20 15:14:23 by faru          ########   odam.nl         */
+/*   Updated: 2023/03/29 03:14:10 by fra           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 int32_t	main(int argc, char **argv)
 {
-	t_map		*map;
+	map_t		*map;
 	int32_t		fd;
-	uint32_t	width;
-	uint32_t	height;
+	uint32_t	cols;
+	uint32_t	rows;
 
-	if (! check_input(argc, argv, &width, &height))
+	if (! check_input(argc, argv, &cols, &rows))
 		ft_raise_error("(fdf) Invalid input", 1);
-	map = create_map(width, height);
+	map = create_map(cols, rows, 0.8);
 	fd = open(argv[1], O_RDONLY);
 	fill_map(fd, map);
 	close(fd);
 	if (! map)
 		ft_raise_error("(fdf) Memory error", 1);
-	start_app(map, 0.8, 0.8);
+	start_app(map, 0.8);
 	if (! map)
 		ft_raise_error("(fdf) Error in MLX42", 1);
 	else

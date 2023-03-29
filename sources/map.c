@@ -6,25 +6,26 @@
 /*   By: faru <faru@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/22 16:08:16 by faru          #+#    #+#                 */
-/*   Updated: 2023/03/20 14:59:40 by faru          ########   odam.nl         */
+/*   Updated: 2023/03/29 03:14:10 by fra           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_map	*create_map(uint32_t cols, uint32_t rows)
+map_t	*create_map(uint32_t cols, uint32_t rows, float grid_perc)
 {
-	t_map	*map;
+	map_t	*map;
 
-	map = malloc(sizeof(t_map));
+	map = malloc(sizeof(map_t));
 	if (! map)
 		ft_raise_error("(fdf) Memory error", 1);
-	map->hor_pix = 0;
-	map->ver_pix = 0;
+	map->grid_perc = grid_perc;
+	map->hor_pix = WIDTH * map->grid_perc;
+	map->ver_pix = HEIGHT * map->grid_perc;
 	map->cols = cols;
 	map->rows = rows;
-	map->map_2d = malloc(cols * rows * sizeof(t_point2d));
-	map->map_3d = malloc(cols * rows * sizeof(t_point3d));
+	map->map_2d = malloc(cols * rows * sizeof(point2d_t));
+	map->map_3d = malloc(cols * rows * sizeof(point3d_t));
 	if (! map->map_2d || ! map->map_3d)
 	{
 		free_map(&map);
@@ -32,10 +33,11 @@ t_map	*create_map(uint32_t cols, uint32_t rows)
 	}
 	map->win = NULL;
 	map->img = NULL;
+	map->img_perc = 1;
 	return (map);
 }
 
-void	free_map(t_map **map)
+void	free_map(map_t **map)
 {
 	if (*map)
 	{
@@ -47,7 +49,7 @@ void	free_map(t_map **map)
 	}
 }
 
-void	fill_map(int32_t fd, t_map *map)
+void	fill_map(int32_t fd, map_t *map)
 {
 	int32_t	i;
 	int32_t	j;
@@ -67,7 +69,7 @@ void	fill_map(int32_t fd, t_map *map)
 		if (! cols)
 			free_map(&map);
 		while (map && cols && cols[j++])
-			(map->map_3d)[tot++] = (t_point3d){j - 1, i, parse_n(cols[j - 1])};
+			(map->map_3d)[tot++] = (point3d_t){j - 1, i, parse_n(cols[j - 1])};
 		ft_free_double((void ***) &cols, -1);
 		ft_free_single((void **) &row);
 		row = get_next_line(fd);
@@ -75,7 +77,7 @@ void	fill_map(int32_t fd, t_map *map)
 	}
 }
 
-void	project_map(t_map *map)
+void	project_map(map_t *map)
 {
 	uint32_t	i;
 
@@ -87,13 +89,13 @@ void	project_map(t_map *map)
 	}
 }
 
-void	render_map(t_map *map, float perc)
+void	render_map(map_t *map)
 {
 	float		edge;
 	uint32_t	i;
-	t_point2d	centre;
-	t_point2d	focus;
-	t_point2d	min;
+	point2d_t	centre;
+	point2d_t	focus;
+	point2d_t	min;
 
 	i = 0;
 	while (i < (map->cols * map->rows))
@@ -103,7 +105,7 @@ void	render_map(t_map *map, float perc)
 		i++;
 	}
 	edge = find_edge(map);
-	resize_map(map, edge * perc);
+	resize_map(map, edge * map->grid_perc);
 	focus = find_focus(map);
 	min = find_min_map(map);
 	centre.x = (map->hor_pix - focus.x) / 2 - min.x;

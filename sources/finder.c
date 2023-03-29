@@ -6,16 +6,16 @@
 /*   By: fra <fra@student.codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/17 02:18:49 by fra           #+#    #+#                 */
-/*   Updated: 2023/03/20 14:55:26 by faru          ########   odam.nl         */
+/*   Updated: 2023/03/29 03:14:10 by fra           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_point2d	find_focus(t_map *map)
+point2d_t	find_focus(map_t *map)
 {
-	t_point2d	max;
-	t_point2d	min;
+	point2d_t	max;
+	point2d_t	min;
 	uint32_t	i;
 
 	i = 1;
@@ -33,12 +33,12 @@ t_point2d	find_focus(t_map *map)
 			min.y = (map->map_2d)[i].y;
 		i++;
 	}
-	return ((t_point2d){max.x - min.x, max.y - min.y});
+	return ((point2d_t){max.x - min.x, max.y - min.y});
 }
 
-t_point2d	find_min_map(t_map *map)
+point2d_t	find_min_map(map_t *map)
 {
-	t_point2d	min;
+	point2d_t	min;
 	uint32_t	i;
 
 	i = 1;
@@ -54,10 +54,10 @@ t_point2d	find_min_map(t_map *map)
 	return (min);
 }
 
-float	find_edge(t_map *map)
+float	find_edge(map_t *map)
 {
 	float		edge;
-	t_point2d	focus;
+	point2d_t	focus;
 
 	focus = find_focus(map);
 	if (focus.x > focus.y)
@@ -75,7 +75,7 @@ float	find_edge(t_map *map)
 	return (edge);
 }
 
-float	find_alpha(t_map *map, int32_t radius, t_point2d cursor_pos)
+float	find_alpha(map_t *map, int32_t radius, point2d_t cursor_pos)
 {
 	bool	sign;
 	float	d;

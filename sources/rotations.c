@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   operations.c                                       :+:    :+:            */
+/*   rotations.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: faru <faru@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/14 14:40:46 by faru          #+#    #+#                 */
-/*   Updated: 2023/03/28 20:08:54 by fra           ########   odam.nl         */
+/*   Updated: 2023/03/28 22:12:45 by fra           ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_point3d	iso_project(t_point3d p)
 
 t_point3d	rotate_x(t_point3d old_point, float rad)
 {
-	t_point3d rotated;
+	t_point3d	rotated;
 
 	rotated.x = old_point.x;
 	rotated.y = old_point.y * cos(rad) - old_point.z * sin(rad);
@@ -34,7 +34,7 @@ t_point3d	rotate_x(t_point3d old_point, float rad)
 
 t_point3d	rotate_y(t_point3d old_point, float rad)
 {
-	t_point3d rotated;
+	t_point3d	rotated;
 
 	rotated.x = old_point.x * cos(rad) + old_point.z * sin(rad);
 	rotated.y = old_point.y;
@@ -44,7 +44,7 @@ t_point3d	rotate_y(t_point3d old_point, float rad)
 
 t_point3d	rotate_z(t_point3d old_point, float rad)
 {
-	t_point3d rotated;
+	t_point3d	rotated;
 
 	rotated.x = old_point.x * cos(rad) - old_point.y * sin(rad);
 	rotated.y = old_point.x * sin(rad) + old_point.y * cos(rad);
