@@ -80,4 +80,4 @@ My project Libft is also included in Fdf as a submodule (as for MLX42) do `git s
 # References
 - About [MLX42 library](https://github.com/codam-coding-college/MLX42)
 - 42 project: [FdF](https://cdn.intra.42.fr/pdf/pdf/68771/en.subject.pdf)
-- By: Francesco Aru, francesco.aru25@gmail.com, intra42/slack nickname: @faru, Codam, Amsterdam
+- By: Francesco Aru ([GithHub](https://github.com/Orpheus-3145)), francesco.aru25@gmail.com, intra42/slack nickname: @faru, Codam, Amsterdam
