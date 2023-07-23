@@ -42,9 +42,8 @@ alpha roation on z-axis:
 # Requirements
 The graphic part relies of the MLX42 library (Codam) which in turn depends on GLFW (see #Recerences for info).
 My project Libft is also included in Fdf as a submodule (as for MLX42) do `git submodule update --init [--remote]` if necessary, feel free to text me (again, see #References) if some piece of Libft is in conflit with FdF.
-Setup:
-	`sudo apt install libglfw3 libglfw3-dev`	--> install glfw
- 	`sudo apt install cmake`			--> install cmake utility
+- `sudo apt install libglfw3 libglfw3-dev`	--> install glfw
+- `sudo apt install cmake`			--> install cmake utility
 
 
 # Execute
